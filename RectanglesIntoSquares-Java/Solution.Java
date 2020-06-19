@@ -1,18 +1,27 @@
 import java.util.ArrayList;
+import java.util.List;
 
-public class CountingDuplicates {
-    public static int duplicateCount(String text) {
+public class SqInRect {
 
-        ArrayList<Character> count = new ArrayList<>();
-        ArrayList<Character> dup = new ArrayList<>();
+    public static List<Integer> sqInRect(int lng, int wdth) {
 
-        for(int i = 0; i < text.length(); i++) {
-            if(count.contains(text.toLowerCase().charAt(i))
-                    && !(dup.contains(text.toLowerCase().charAt(i)))) {
-                dup.add(text.charAt(i));
+        if(lng == wdth){
+            return null;
+        }
+
+        ArrayList<Integer> ans = new ArrayList<>();
+        int no = lng * wdth;
+
+        while (no != 0){
+            if(lng > wdth) {
+                no -= wdth * wdth;
+                ans.add(wdth);
+                lng -= wdth;
             } else {
-                count.add(text.charAt(i));
+                no -= lng * lng;
+                ans.add(lng);
+                wdth -= lng;
             }
-        } return dup.size();
+        } return ans;
     }
 }
